@@ -61,5 +61,3 @@ function game() {
     
     console.log(getMessageGame(totalRounds, score));
 }
-
-game();
