@@ -4,9 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock, paper, scissors</title>
+    <title>Piedra, papel o tijeras - El juego definitivo</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./main.js" defer></script>
 </head>
 <body>
-    <script src="./main.js"></script>
+    <!--He pasado los últimos 22 años tratando de descifrar el mapa que dejó el pirata Barbanegra.
+    Finalmente he resuelto ese acertijo, y como obra final, he decidido compartirlo con el mundo.
+    Si logras ganarme en el piedra, papel o tijeras, te revelaré las coordenadas del tesoro.
+    Buena suerte!-->
+    <div class="layout">
+        <h1>PIEDRA, PAPEL O TIJERAS</h1>
+        <div class="score-table">
+            <div class="player-score">
+                <h2>JUGADOR</h2>
+                <div class="score">0</div>
+            </div>
+            <div class="computer-score">
+                <h2>ADVERSARIO</h2>
+                <div class="score">0</div>
+            </div>
+        </div>
+        <div class="buttons">
+            <img src="./icons/rock.png" alt="Piedra">
+            <img src="./icons/paper.png" alt="Papel">
+            <img src="./icons/scissors.png" alt="Tijeras">
+        </div>
+        <div class="msj-round">Elije sabiamente</div>
+    </div>
 </body>
 </html>
