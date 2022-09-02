@@ -4,4 +4,8 @@ Este repositorio tiene la finalidad de resolver el proyecto de The Odin Project,
 
 https://www.theodinproject.com/lessons/foundations-rock-paper-scissors
 
-La idea es generar un juego de "Piedra, papel o tijera", que interactúe con el usuario mediante PROMTS y ALERTS, pero dejando las bases para que poder construir una interfaz a futuro sea m
+INTERFAZ:
+
+![image](https://user-images.githubusercontent.com/87911089/188048766-ecc86ec0-d843-4816-b3cb-a262c6b5d804.png)
+
+Para realizar este proyecto, se usaron iconos descargados de: https://www.flaticon.es/
