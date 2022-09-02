@@ -1,25 +1,18 @@
-function normalizeString(string) {
-    return string[0].toUpperCase() + string.slice(1);
-}
-
 function getComputerChoice() {
-    const choices = ["Rock", "Paper", "Scissors"];
+    const choices = ["Piedra", "Papel", "Tijeras"];
     const computerChoice = choices[Math.floor(Math.random() * choices.length)];
     return computerChoice;
 }
 
-function getPlayerChoice() {
-    const playerChoice = prompt("What do you choose? Rock, paper or scissors?");
-    return normalizeString(playerChoice);
-}
-
 function getMessageRound(playerSelection, computerSelection, roundResult) {
+    playerSelection = playerSelection.toUpperCase();
+    computerSelection = computerSelection.toUpperCase();
     if (roundResult === 1) {
-        return `Lucky! ${playerSelection} beats ${computerSelection}.`;
+        return `¡Qué suerte!\n${playerSelection} destruye a ${computerSelection}.`;
     } else if (roundResult === -1) {
-        return `JA! You lose. ${computerSelection} beats ${playerSelection}.`;
+        return `JA! Perdiste.\n${computerSelection} destruye a ${playerSelection}.`;
     } else {
-        return `It's a tie. The computer choose ${computerSelection} too.`;
+        return `Es un empate.\nLa computadora también eligió ${computerSelection}.`;
     }
 }
 
@@ -35,9 +28,9 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         return 0
     }
-    else if (playerSelection === "Rock" && computerSelection === "Paper" || 
-    playerSelection === "Paper" && computerSelection === "Scissors" || 
-    playerSelection === "Scissors" && computerSelection === "Rock") {
+    else if (playerSelection === "Piedra" && computerSelection === "Papel" || 
+    playerSelection === "Papel" && computerSelection === "Tijeras" || 
+    playerSelection === "Tijeras" && computerSelection === "Piedra") {
         return -1;
     }
     else {
@@ -45,19 +38,53 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    const totalRounds = 5;
-    let score = 0;
-
-    for (let i = 0; i < totalRounds; i++) {
-        const playerSelection = getPlayerChoice();
-        const computerSelection = getComputerChoice();
-        let roundResult = playRound(playerSelection, computerSelection);
-        if (roundResult === 1) {
-            score++;
-        }
-        console.log(getMessageRound(playerSelection, computerSelection, roundResult));
+function updateScore(roundResult) {
+    const playerScore = document.querySelector(".player-score .score");
+    const computerScore = document.querySelector(".computer-score .score");
+    if(roundResult === 1) {
+        playerScore.textContent = +playerScore.textContent + 1;
+    }else if(roundResult === -1) {
+        computerScore.textContent = +computerScore.textContent + 1;
     }
-    
-    console.log(getMessageGame(totalRounds, score));
 }
+
+function executeRound(e) {
+    const msjContainer = document.querySelector(".msj-round");
+    const playerSelection = this.getAttribute("alt");
+    const computerSelection = getComputerChoice();
+
+    const roundResult = playRound(playerSelection, computerSelection);
+    msjContainer.innerText = getMessageRound(playerSelection, computerSelection, roundResult);
+
+    updateScore(roundResult);
+
+    const winner = getWinner();
+    if(winner) {
+        endGame(winner);
+    }
+}
+
+function getWinner() {
+    const playerScore = document.querySelector(".player-score .score").textContent;
+    const computerScore = document.querySelector(".computer-score .score").textContent;
+    if (+playerScore === 5) {
+        return 1;
+    }else if (+computerScore === 5) {
+        return -1;
+    }
+}
+
+function endGame(winner) {
+    const finalMsj = (winner === 1)
+                    ? "Ganaste!\nFelicitaciones."
+                    : "Perdiste!\nMejor suerte la próxima."
+    document.querySelector(".buttons").classList.toggle("hide");
+    document.querySelector(".msj-round").innerText = finalMsj;
+}
+
+function startGame() {
+    const buttons = document.querySelectorAll(".buttons img");
+    buttons.forEach(button => button.addEventListener("click", executeRound))
+}
+
+startGame();

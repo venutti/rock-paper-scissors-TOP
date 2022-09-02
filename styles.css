@@ -23,6 +23,10 @@ body {
     background-color: var(--COLOR-WHITE);
 }
 
+.hide {
+    display: none !important;
+}
+
 /*TITLE*/
 h1 {
     text-align: center;
