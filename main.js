@@ -48,14 +48,21 @@ function updateScore(roundResult) {
     }
 }
 
+function updateMsj(msj) {
+    document.querySelector(".msj-round").innerText = msj;
+}
+
+function swichInterface() {
+    document.querySelector(".buttons").classList.toggle("hide");
+    document.querySelector("#reset").classList.toggle("hide");
+}
+
 function executeRound(e) {
-    const msjContainer = document.querySelector(".msj-round");
     const playerSelection = this.getAttribute("alt");
     const computerSelection = getComputerChoice();
-
     const roundResult = playRound(playerSelection, computerSelection);
-    msjContainer.innerText = getMessageRound(playerSelection, computerSelection, roundResult);
 
+    updateMsj(getMessageRound(playerSelection, computerSelection, roundResult));
     updateScore(roundResult);
 
     const winner = getWinner();
@@ -78,13 +85,23 @@ function endGame(winner) {
     const finalMsj = (winner === 1)
                     ? "Ganaste!\nFelicitaciones."
                     : "Perdiste!\nMejor suerte la próxima."
-    document.querySelector(".buttons").classList.toggle("hide");
-    document.querySelector(".msj-round").innerText = finalMsj;
+    swichInterface();
+    updateMsj(finalMsj);
+}
+
+function resetGame() {
+    document.querySelector(".player-score .score").textContent = 0;
+    document.querySelector(".computer-score .score").textContent = 0;
+    swichInterface();
+    updateMsj("Elije sabiamente");
 }
 
 function startGame() {
     const buttons = document.querySelectorAll(".buttons img");
-    buttons.forEach(button => button.addEventListener("click", executeRound))
+    buttons.forEach(button => button.addEventListener("click", executeRound));
+
+    const resetBtn = document.querySelector("#reset");
+    resetBtn.onclick = resetGame;
 }
 
 startGame();
