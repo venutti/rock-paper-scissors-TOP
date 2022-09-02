@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
 
+/*GENERAL*/
 :root {
     --COLOR-BLUE: #2C3D63;
     --COLOR-GREEN: #ADDCCA;
@@ -22,6 +23,7 @@ body {
     background-color: var(--COLOR-WHITE);
 }
 
+/*TITLE*/
 h1 {
     text-align: center;
     padding: 1rem 0;
@@ -31,6 +33,7 @@ h1 {
     color: var(--COLOR-WHITE);
 }
 
+/*SCORE*/
 .score-table {
     text-align: center;
     padding: 0 1.5rem;
@@ -50,6 +53,7 @@ h1 {
     font-size: 2.5rem;
 }
 
+/*BUTTONS*/
 .buttons {
     max-width: 400px;
     display: flex;
@@ -62,8 +66,14 @@ h1 {
 .buttons img {
     min-width: 0;
     flex: 1;
+    cursor: pointer;
 }
 
+.buttons img:hover {
+    filter: drop-shadow(5px 5px 5px #222);
+}
+
+/*MSJ*/
 .msj-round {
     text-align: center;
     background-color: var(--COLOR-GREEN);
