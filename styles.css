@@ -19,8 +19,11 @@ html {
 
 body {
     margin: 0;
-    height: 100vh;
     background-color: var(--COLOR-WHITE);
+}
+
+html, body {
+    height: 100%;
 }
 
 .hide {
